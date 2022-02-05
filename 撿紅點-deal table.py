@@ -9,20 +9,19 @@
 def dealtable(gamerbox):
     temp=card.pop()
     tempoint=temp%13+1
+    length=len(table)
     for i in table:
         tablepoint=i%13+1
         tablesuit=i//13
         if tempoint<10:
-            if tempoint+tablepoint==10 :
+            if tempoint+tablepoint==10:
                gamerbox.append(i)
                gamerbox.append(temp)
-               table.pop(table.index(i))     
-            else:
-                table.append(temp)   
+               table.pop(table.index(i))   
         else:
-            if tempoint==tablepoint:
-               gamerbox.append(i)
-               gamerbox.append(temp)
-               table.pop(table.index(i)) 
-            else:
-               table.append(temp)
+            if tempoint==tablepoint :
+                gamerbox.append(i)
+                gamerbox.append(temp)
+                table.pop(table.index(i))   
+    if len(table)==length:
+        table.append(temp)
