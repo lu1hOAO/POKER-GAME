@@ -137,6 +137,11 @@ def check():
                 bankerbox.append(i)
                 bankerbox.append(j)
                 return
+    for j in bankercard:
+        if j//13>=2:
+            bankercard.pop(bankercard.index(j))
+            table.append(j)
+            return
     temp=bankercard.pop()
     table.append(temp)
     return
