@@ -99,19 +99,39 @@ def cau():
 def check():
     for j in bankercard:
         for i in table:
-            if j%13+1==9 and i%13+1==1:
+            if j%13+1==9 and i%13+1==1 and i//13<2:
                 table.pop(table.index(i))
                 bankercard.pop(bankercard.index(j))
                 bankerbox.append(i)
                 bankerbox.append(j)
                 return
-            elif (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9:
+            elif (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9 and i//13<2:
                 table.pop(table.index(i))
                 bankercard.pop(bankercard.index(j))
                 bankerbox.append(i)
                 bankerbox.append(j)
                 return
-            elif (j%13+1)+(i%13+1)==10:
+            elif (j%13+1)+(i%13+1)==10 and i//13<2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+    for j in bankercard:
+        for i in table:
+            if j%13+1==9 and i%13+1==1 and i//13>=2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9 and i//13>=2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)+(i%13+1)==10 and i//13>=2:
                 table.pop(table.index(i))
                 bankercard.pop(bankercard.index(j))
                 bankerbox.append(i)
