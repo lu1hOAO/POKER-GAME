@@ -21,3 +21,57 @@ BTW我想時候最喜歡撿紅點，看日本電影夏日大作戰時，才發�
 超過105分者為勝！！  
 
 ![螢幕擷取畫面 (239)](https://user-images.githubusercontent.com/91367098/152663476-8511f04c-ff2c-410d-bcd7-d4faa6d07ab5.png)
+**********************************************************************************************************
+撿紅點電腦出牌的演算法  
+雖然是只要點數有辦法配對就應優先出此牌，但只有紅牌有算分，為了確保最佳得分，判斷流程如下:
+1.先找桌牌中紅色可配對的  
+2.若無再找桌牌中黑色可配對的  
+3.若前兩點都無，再隨機出一張黑牌
+```.py
+def check():
+    for j in bankercard:
+        for i in table:
+            if j%13+1==9 and i%13+1==1 and i//13<2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9 and i//13<2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)+(i%13+1)==10 and i//13<2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+    for j in bankercard:
+        for i in table:
+            if j%13+1==9 and i%13+1==1 and i//13>=2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9 and i//13>=2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+            elif (j%13+1)+(i%13+1)==10 and i//13>=2:
+                table.pop(table.index(i))
+                bankercard.pop(bankercard.index(j))
+                bankerbox.append(i)
+                bankerbox.append(j)
+                return
+    for j in bankercard:
+      if j//13>=2:
+        bankercard.pop(bankercard.index(j))
+        table.append(j)
+    return
+    
