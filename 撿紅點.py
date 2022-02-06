@@ -24,12 +24,12 @@ def dealtable(gamerbox):
     if len(table)==length:
         table.append(temp)
 def printmessage():
+    print("*********************************************************")
     print("on table:",end=" ")
     printcard(table)
     print("playercard:",end=" ")
     printcard(playercard)
-    print("bankercard: ",end=" ")
-    printcard(bankercard)
+    
 def printcard(gamercard):
     for i in gamercard:
         if i//13==0:
@@ -97,15 +97,8 @@ def cau():
     else :
         print("嗚嗚嗚，再加油")
 def check():
-    red_table=list()
-    black_table=list()
-    for i in table:
-        if i//13<2:
-            red_table.append(i)
-        else:
-            black_table.append(i)
     for j in bankercard:
-        for i in red_table:
+        for i in table:
             if j%13+1==9 and i%13+1==1:
                 table.pop(table.index(i))
                 bankercard.pop(bankercard.index(j))
@@ -124,25 +117,9 @@ def check():
                 bankerbox.append(i)
                 bankerbox.append(j)
                 return
-    for j in bankercard:
-        for i in black_table:
-            if (j%13+1)==(i%13+1) and (j%13+1)>9 and (i%13+1)>9:
-                table.pop(table.index(i))
-                bankercard.pop(bankercard.index(j))
-                bankerbox.append(i)
-                bankerbox.append(j)
-                return
-            elif (j%13+1)+(i%13+1)==10:
-                table.pop(table.index(i))
-                bankercard.pop(bankercard.index(j))
-                bankerbox.append(i)
-                bankerbox.append(j)
-                return
     temp=bankercard.pop()
     table.append(temp)
     return
-def getpoint(x):
-    return x%13+1
 card=list(range(0,52))
 random.shuffle(card)
 bankercard=list()
